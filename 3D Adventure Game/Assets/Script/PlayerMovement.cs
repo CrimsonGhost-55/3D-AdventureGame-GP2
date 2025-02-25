@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
+
     public float speed = 0.5f;
-    public int score = 0;
+
+   
+    private int score = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.right * speed);
         }
+
+        
+
+        
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,12 +46,14 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.tag == "Treasure")
         {
             score++;
+            GameManager.Instance.Score++;
             Destroy(collision.gameObject);
             Debug.Log("The score is " + score);
         }
         if(collision.gameObject.tag == "ScoreEnemy")
         {
             score--;
+            GameManager.Instance.Score--;
         }
         if(collision.gameObject.tag == "DeathEnemy")
         {
