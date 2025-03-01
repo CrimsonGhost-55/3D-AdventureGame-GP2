@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.right * speed);
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(Vector2.down * speed);
+        }
 
         
 
@@ -54,10 +58,11 @@ public class PlayerMovement : MonoBehaviour
         {
             score--;
             GameManager.Instance.Score--;
+            Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "DeathEnemy")
         {
-            //SceneManagement.LoadScene(SceneManger.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         
     }

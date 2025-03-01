@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 
@@ -12,10 +13,12 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    //public TextMeshProUGUI endSceenScore;
 
+    
     public int score;
 
-    public float endTime = 15.0f;
+   
 
     // Creates a new folder to store data
     const string DIR_DATA = "/Data/";
@@ -77,8 +80,8 @@ public class GameManager : MonoBehaviour
             //int32 turns string into int when reading the number from the text file
             HighScore = Int32.Parse(File.ReadAllText(PATH_HIGH_SCORE));
         }
-        
-        
+
+        //endSceenScore.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -86,11 +89,13 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = "Score: " + Score;
         highScoreText.text = "High Score: " + HighScore;
-        endTime -= Time.deltaTime;
-        if(endTime <= 0.0f)
-        {
-            highScoreText.enabled = true;
-        }
-        //score = myPlayer.score;
+        
+        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("EndScene"))
+        //{
+        //    endSceenScore.text = "High Score: " + HighScore;
+            
+        //}
+
+       
     }
 }
